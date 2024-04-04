@@ -1,6 +1,6 @@
 #models.py
 from datetime import datetime
-from .extentions import db
+from extentions import db
 
 class Tarefa(db.Model):
     __tablename__ = "tarefas"

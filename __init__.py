@@ -2,8 +2,8 @@
 from flask import Flask
 import os
 
-from .extentions import db
-from .routes import main
+from extentions import db
+from routes import main
 
 
 

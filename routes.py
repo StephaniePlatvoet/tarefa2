@@ -3,8 +3,8 @@
 from flask import render_template, Blueprint
 from sqlalchemy import or_
 
-from .models import Tarefa
-from .extentions import db, adiar, criar, editar, eliminar, feita, exibirFiltroCustom, criar_tarefas, refresh, datetime
+from models import Tarefa
+from extentions import db, adiar, criar, editar, eliminar, feita, exibirFiltroCustom, criar_tarefas, refresh, datetime
 
 
 
