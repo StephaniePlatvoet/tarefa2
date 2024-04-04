@@ -1,4 +1,4 @@
-from funcoes import is_data_no_passado, calcular_proxima_data
+from app_files.funcoes import is_data_no_passado, calcular_proxima_data
 from flask import redirect,url_for
 
 def refresh(Tarefa,db,classe_filter=None):

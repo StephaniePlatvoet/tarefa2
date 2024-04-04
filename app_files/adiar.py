@@ -1,5 +1,5 @@
 from flask import url_for,redirect
-from funcoes import find_the_next_Sunday, calcular_proxima_data
+from app_files.funcoes import find_the_next_Sunday, calcular_proxima_data
 
 def adiar(Tarefa,db,id):
     tarefa = Tarefa.query.filter_by(id=int(id)).first()
