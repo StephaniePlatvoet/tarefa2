@@ -1,7 +1,7 @@
 from flask import request, redirect, url_for
 from datetime import datetime
 from dateutil.rrule import SU
-from app_files.funcoes import calcular_proxima_data, criarImport
+from funcoes import calcular_proxima_data, criarImport
 
 def criar(task_class,db):
 

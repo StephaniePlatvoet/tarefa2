@@ -1,5 +1,5 @@
 from flask import redirect, url_for
-from app_files.funcoes import calcular_proxima_data,is_data_no_passado
+from funcoes import calcular_proxima_data,is_data_no_passado
 
 def feita(task_class,db,id):
     tarefa = task_class.query.filter_by(id=int(id)).first()
