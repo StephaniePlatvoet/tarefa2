@@ -1,10 +1,10 @@
 
 …or create a new repository on the command line
 git init
-git commit -m "first commit"
+git commit -m "1 commit"
 git branch -M main
-git remote add origin https://github.com/StephaniePlatvoet/tarefa2.git
-git push -u origin main
+git remote add originw https://github.com/StephaniePlatvoet/tarefa2.git
+git push -u originw main
 git add .
 
 …or push an existing repository from the command line
