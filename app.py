@@ -16,7 +16,6 @@ from eliminar import eliminar
 from feita import feita
 from filtro import exibirFiltroCustom
 from importCSV import criar_tarefas
-from dorefresh import refresh
 from models import criar_bd
 
 
@@ -51,20 +50,6 @@ class Tarefa(db.Model):
 @app.route('/')
 def go_home():
     return exibirFiltroCustom(Tarefa, db)
-
-# refresh
-
-@app.route('/refresh')
-def call_refresh():
-    return refresh(Tarefa,db)
-
-@app.route('/refresh0')
-def call_refresh0():
-    return refresh(Tarefa,db,classe_filter=0)
-
-@app.route('/refreshAniversarios')
-def call_refreshAniversarios():
-    return refresh(Tarefa,db,classe_filter='aniversarios')
 
 
 # filtros date
