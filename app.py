@@ -52,15 +52,6 @@ def go_home():
     return exibirFiltroCustom(Tarefa, db)
 
 
-# filtros date
-@app.route('/exibir_filtro_steph_min', methods=['GET'])
-def exibirFiltroStephmin():
-    return exibirFiltroCustom(Tarefa, db, owner='steph', filtrar_data_mais_proxima=True)
-
-
-@app.route('/exibir_filtro_steph', methods=['GET'])
-def exibirFiltroSteph():
-    return exibirFiltroCustom(Tarefa, db, owner='steph')
 
 @app.route('/exibir_filtro', methods=['GET'])
 def do_filter():
@@ -91,29 +82,6 @@ def editar_tarefa(id):
     tarefa = Tarefa.query.get_or_404(id)
     return render_template('editar_tarefa.html', tarefa=tarefa)
 
-# calendario
-@app.route('/calendario', methods=['GET'])
-def calendario():
-    # Número total de tarefas a mostrar no calendário
-    total_tarefas = 35
-    hoje = datetime.utcnow().date()
-
-    # Query das tarefas ordenadas por data_proxima
-    tarefas_query = Tarefa.query.filter(or_(Tarefa.owner == 'steph', Tarefa.owner == 'ambos'),Tarefa.classe == 0).order_by(Tarefa.data_proxima.asc()).limit(total_tarefas).all()
-
-    # Inicializar estrutura dos dias da semana
-    dias_da_semana = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
-    calendario_semanal = {dia: [] for dia in dias_da_semana}
-
-    # Distribuir tarefas pelos dias da semana
-    for i, tarefa in enumerate(tarefas_query):
-        dia_index = i % 7  # Isso garante a distribuição uniforme
-        dia_nome = dias_da_semana[dia_index]
-        calendario_semanal[dia_nome].append(tarefa)
-
-    # Passa o calendário_semanal para o template
-    return render_template('calendario.html', calendario_semanal=calendario_semanal, datetime=datetime)
-
 # eliminar tarefa
 
 @app.route('/eliminar-tarefa/<id>')
@@ -126,17 +94,6 @@ def eliminar_tarefa(id):
 def criar_tarefa():
     return criar(Tarefa,db)
 
-
-caminho_pasta_database = '/Users/stephanietrabalho/Desktop/proj/database'
-@app.cli.command("import-csv-birthdays") #flask import-csv-birthdays
-def import_csv_ss():
-    name_csv_file = caminho_pasta_database + '/Livro6.csv'
-    criar_tarefas(Tarefa, db,name_csv_file)
-
-@app.cli.command("import-csv") #flask import-csv
-def import_csv():
-    name_csv_file = caminho_pasta_database + '/Livro4.csv'
-    criar_tarefas(Tarefa, db,name_csv_file)
 
 if __name__ == "__main__":
     app.run(debug=True)
