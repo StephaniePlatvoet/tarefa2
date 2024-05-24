@@ -16,7 +16,7 @@ def criar(task_class,db):
     data_proxima_seguinte=calcular_proxima_data(data_primeira_vez,intervalo_repeticao_next_sunday,intervalo_repeticao_value,intervalo_repeticao_mode,primeiraVez = False),
     classe=request.form.get('classe'),
     notas=request.form['notas'],
-    ordem=request.form['ordem'],
+    ordem=custom_order(request.form['ordem']),
     owner=request.form['owner']
     )
 
