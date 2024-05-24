@@ -5,7 +5,7 @@ from funcoes import calcular_proxima_data, criarImport
 
 def criar(task_class,db):
 
-    data_primeira_vez_str = datetime.strptime(request.form['data_primeira_vez']
+    data_primeira_vez_str = datetime.strptime(request.form['data_primeira_vez'])
     
     nova_tarefa = task_class(
     descricao=request.form['descricao_tarefa'],
