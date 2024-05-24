@@ -21,6 +21,21 @@ def criar(task_class,db):
     owner = request.form['owner']
     proximo_domingo=bool(intervalo_repeticao_next_sunday)
 
-    criarImport(task_class,db, descricao, feita, data_primeira_vez,data_proxima,data_proxima_seguinte, intervalo_repeticao_mode, intervalo_repeticao_value, proximo_domingo, classe, notas, ordem, owner)
+    nova_tarefa = task_class(
+    descricao=descricao,
+    feita=feita,
+    data_primeira_vez=data_primeira_vez,
+    intervalo_repeticao_mode=intervalo_repeticao_mode,
+    intervalo_repeticao_value=intervalo_repeticao_value,
+    proximo_domingo=proximo_domingo,
+    data_proxima=data_proxima,
+    data_proxima_seguinte=data_proxima_seguinte,
+    classe=classe,
+    notas=notas,
+    ordem=custom_order(ordem),
+    owner=owner
+    )
 
+    db.session.add(nova_tarefa)
+    db.session.commit()
     return redirect(url_for('go_home') + '#content')
