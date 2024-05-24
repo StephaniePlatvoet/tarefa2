@@ -105,3 +105,4 @@ def criarImport(task_class,db, descricao, feita, data_primeira_vez,data_proxima,
 
     db.session.add(nova_tarefa)
     db.session.commit()
+    return
