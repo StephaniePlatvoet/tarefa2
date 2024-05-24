@@ -15,7 +15,6 @@ from editar import editar
 from eliminar import eliminar
 from feita import feita
 from filtro import exibirFiltroCustom
-from importCSV import criar_tarefas
 from models import criar_bd
 
 
