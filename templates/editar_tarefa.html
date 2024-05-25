@@ -87,32 +87,3 @@
         </div>
         
         <!-- Notas -->
-        <div>
-            <label for="notas">Notas:</label>
-            <textarea id="notas" name="notas">{{ tarefa.notas }}</textarea>
-        </div>
-        
-        <!-- Ordem -->
-        <div class="form-group col-md-3">
-            <label for="ordem">Ordem:</label>
-            <input type="text" id="ordem" name="ordem" value="{{ tarefa.ordem }}" placeholder="Ordem" class="form-control" />
-        </div>
-        
-        <!-- Owner -->
-        <div class="form-group col-md-3">
-            <label for="owner">Proprietário:</label>
-            <select name="owner" class="form-control">
-                <option value="steph" {{ 'selected' if tarefa.owner == 'steph' else '' }}>Stephanie</option>
-                <option value="dan" {{ 'selected' if tarefa.owner == 'dan' else '' }}>Daniel</option>
-                <option value="ambos" {{ 'selected' if tarefa.owner == 'ambos' else '' }}>Ambos</option>
-            </select>
-        </div>
-
-        <!-- Botões -->
-        <div>
-            <button type="submit">Atualizar Tarefa</button>
-            <a href="/" class="btn">Go Back</a>
-        </div>
-    </form>
-</body>
-</html>
