@@ -6,11 +6,11 @@ def editar(Tarefa, db, id):
     tarefa = Tarefa.query.get_or_404(id)
     if tarefa:
         # Lista de campos a serem atualizados
-        campos = ['descricao', 'feita', 'notas', 'classe', 'data_primeira_vez', 'data_proxima', 'data_proxima_seguinte', 'intervalo_repeticao_mode', 'intervalo_repeticao_value', 'proximo_domingo', 'owner']
+        campos = ['descricao', 'notas', 'classe', 'data_proxima', 'data_proxima_seguinte', 'intervalo_repeticao_mode', 'intervalo_repeticao_value', 'proximo_domingo', 'owner']
         
         # Mapeamento de campos booleanos e datetime
-        campos_booleanos = ['feita', 'proximo_domingo']
-        campos_datetime = ['data_primeira_vez', 'data_proxima', 'data_proxima_seguinte']
+        campos_booleanos = ['proximo_domingo']
+        campos_datetime = ['data_proxima', 'data_proxima_seguinte']
 
         erro = False
         
@@ -60,3 +60,4 @@ def editar(Tarefa, db, id):
     else:
         flash('Tarefa não encontrada.', 'error')
         return redirect(url_for('index'))  # Assumindo que você tem uma rota 'index'
+
