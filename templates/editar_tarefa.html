@@ -7,6 +7,18 @@
 </head>
 <body>
     <h1>Editar Tarefa</h1>
+
+    <!-- Exibição de mensagens flash -->
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
     <form action="/atualizar_tarefa/{{ tarefa.id }}" method="POST">
         <input type="hidden" name="id" value="{{ tarefa.id }}" />
         <div>
@@ -64,4 +76,3 @@
     </form>
 </body>
 </html>
-
