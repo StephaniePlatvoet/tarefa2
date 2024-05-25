@@ -121,8 +121,8 @@
             <!-- Ordem -->
             <div class="form-group col-md-4">
                 <label for="ordem">Ordem:</label>
-                <input type="text" id="ordem" name="ordem" value="{{ tarefa.ordem }}" placeholder="Ordem" class="form-control" />
-            </div>
+                <input type="text" id="ordem" name="ordem" value="{{ tarefa.ordem if tarefa.ordem is not none else '' }}" placeholder="Ordem" class="form-control" />
+            </div>            
 
             <!-- Owner -->
             <div class="form-group col-md-4">
