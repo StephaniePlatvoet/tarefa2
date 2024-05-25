@@ -87,3 +87,59 @@
         </div>
         
         <!-- Notas -->
+        <div>
+            <label for="notas">Notas:</label>
+            <textarea id="notas" name="notas">{{ tarefa.notas }}</textarea>
+        </div>
+        
+        <!-- Ordem -->
+        <div class="form-group col-md-3">
+            <label for="ordem">Ordem:</label>
+            <input type="text" id="ordem" name="ordem" value="{{ tarefa.ordem }}" placeholder="Ordem" class="form-control" />
+        </div>
+        
+        <!-- Owner -->
+        <div class="form-group col-md-3">
+            <label for="owner">Proprietário:</label>
+            <select name="owner" class="form-control">
+                <option value="steph" {{ 'selected' if tarefa.owner == 'steph' else '' }}>Stephanie</option>
+                <option value="dan" {{ 'selected' if tarefa.owner == 'dan' else '' }}>Daniel</option>
+                <option value="ambos" {{ 'selected' if tarefa.owner == 'ambos' else '' }}>Ambos</option>
+            </select>
+        </div>
+
+        <!-- Botões -->
+        <div>
+            <button type="submit">Atualizar Tarefa</button>
+            <a href="/" class="btn">Go Back</a>
+        </div>
+    </form>
+
+    <script>
+        document.querySelector("[name=intervalo_repeticao_mode]").addEventListener("change", function (event) {
+            var selectedValue = event.target.value;
+            var input = document.querySelector("#intervalo_repeticao_value");
+            if (selectedValue === "days") {
+                input.placeholder = "Days (e.g. 7)";
+            } else if (selectedValue === "weeks") {
+                input.placeholder = "Weeks (e.g. 2)";
+            } else if (selectedValue === "months") {
+                input.placeholder = "Months (e.g. 3)";
+            } else if (selectedValue === "years") {
+                input.placeholder = "Years (e.g. 2)";
+            } else if (selectedValue === "specific_day_of_month") {
+                input.placeholder = "Day of month (e.g. 15)";
+            } else if (selectedValue === "specific_day_of_year") {
+                input.placeholder = "Day and Month (e.g. 30-01)";
+            } else if (selectedValue === "birthday") {
+                input.placeholder = "Month and day (e.g. 30-01)";
+            } else if (["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].includes(selectedValue)) {
+                input.placeholder = "Não escrever nada aqui!";
+            } else {
+                input.placeholder = "Interval value";
+            }
+        });
+    </script>
+</body>
+</html>
+
