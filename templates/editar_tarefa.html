@@ -20,7 +20,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-  </head>
+    <style>
+        body {
+            padding: 30px;
+        }
+    </style>
 </head>
 <body>
     <h1>Editar Tarefa</h1>
@@ -38,97 +42,105 @@
 
     <form action="/atualizar_tarefa/{{ tarefa.id }}" method="POST">
         <input type="hidden" name="id" value="{{ tarefa.id }}" />
-        
-        <!-- Descrição -->
-        <div>
-            <label for="descricao">Descrição:</label>
-            <input type="text" id="descricao" name="descricao" value="{{ tarefa.descricao }}" required />
+
+        <div class="form-row">
+            <!-- Descrição -->
+            <div class="form-group col-md-4">
+                <label for="descricao">Descrição:</label>
+                <input type="text" id="descricao" name="descricao" value="{{ tarefa.descricao }}" required class="form-control" />
+            </div>
+
+            <!-- Data Próxima -->
+            <div class="form-group col-md-4">
+                <label for="data_proxima">Data Próxima:</label>
+                <input type="date" id="data_proxima" name="data_proxima" value="{{ tarefa.data_proxima.strftime('%Y-%m-%d') }}" required class="form-control" />
+            </div>
+
+            <!-- Data Próxima Seguinte -->
+            <div class="form-group col-md-4">
+                <label for="data_proxima_seguinte">Data Próxima Seguinte:</label>
+                <input type="date" id="data_proxima_seguinte" name="data_proxima_seguinte" value="{{ tarefa.data_proxima_seguinte.strftime('%Y-%m-%d') }}" required class="form-control" />
+            </div>
         </div>
-        
-        <!-- Data Próxima -->
-        <div>
-            <label for="data_proxima">Data Próxima:</label>
-            <input type="date" id="data_proxima" name="data_proxima" value="{{ tarefa.data_proxima.strftime('%Y-%m-%d') }}" required />
+
+        <div class="form-row">
+            <!-- Modo de Repetição -->
+            <div class="form-group col-md-4">
+                <label for="intervalo_repeticao_mode">Modo de Repetição:</label>
+                <select name="intervalo_repeticao_mode" class="form-control">
+                    <option value="" {{ 'selected' if tarefa.intervalo_repeticao_mode == '' else '' }}>Sem repetição</option>
+                    <option value="days" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'days' else '' }}>Dias</option>
+                    <option value="weeks" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'weeks' else '' }}>Semanas</option>
+                    <option value="months" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'months' else '' }}>Meses</option>
+                    <option value="years" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'years' else '' }}>Anos</option>
+                    <option value="specific_day_of_month" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'specific_day_of_month' else '' }}>Dia específico do mês</option>
+                    <option value="specific_day_of_year" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'specific_day_of_year' else '' }}>Dia específico do ano</option>
+                    <option value="birthday" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'birthday' else '' }}>Aniversário</option>
+                    <option value="Monday" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'Monday' else '' }}>Todas as segundas</option>
+                    <option value="Tuesday" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'Tuesday' else '' }}>Todas as terças</option>
+                    <option value="Wednesday" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'Wednesday' else '' }}>Todas as quartas</option>
+                    <option value="Thursday" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'Thursday' else '' }}>Todas as quintas</option>
+                    <option value="Friday" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'Friday' else '' }}>Todas as sextas</option>
+                    <option value="Saturday" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'Saturday' else '' }}>Todos os sábados</option>
+                    <option value="Sunday" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'Sunday' else '' }}>Todos os domingos</option>
+                </select>
+            </div>
+
+            <!-- Valor de Repetição -->
+            <div class="form-group col-md-4">
+                <label for="intervalo_repeticao_value">Valor de Repetição:</label>
+                <input type="text" id="intervalo_repeticao_value" name="intervalo_repeticao_value" value="{{ tarefa.intervalo_repeticao_value }}" placeholder="Interval value" class="form-control" />
+            </div>
+
+            <!-- Próximo Domingo -->
+            <div class="form-group col-md-4 form-check" style="padding-top: 32px;">
+                <input type="checkbox" id="proximo_domingo" name="proximo_domingo" class="form-check-input" {{ 'checked' if tarefa.proximo_domingo else '' }}>
+                <label for="proximo_domingo" class="form-check-label">Find next Sunday after calculated date</label>
+            </div>
         </div>
-        
-        <!-- Data Próxima Seguinte -->
-        <div>
-            <label for="data_proxima_seguinte">Data Próxima Seguinte:</label>
-            <input type="date" id="data_proxima_seguinte" name="data_proxima_seguinte" value="{{ tarefa.data_proxima_seguinte.strftime('%Y-%m-%d') }}" required />
-        </div>
-        
-        <!-- Modo de Repetição -->
-        <div class="form-group col-md-3">
-            <label for="intervalo_repeticao_mode">Modo de Repetição:</label>
-            <select name="intervalo_repeticao_mode" class="form-control">
-                <option value="" {{ 'selected' if tarefa.intervalo_repeticao_mode == '' else '' }}>Sem repetição</option>
-                <option value="days" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'days' else '' }}>Dias</option>
-                <option value="weeks" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'weeks' else '' }}>Semanas</option>
-                <option value="months" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'months' else '' }}>Meses</option>
-                <option value="years" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'years' else '' }}>Anos</option>
-                <option value="specific_day_of_month" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'specific_day_of_month' else '' }}>Dia específico do mês</option>
-                <option value="specific_day_of_year" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'specific_day_of_year' else '' }}>Dia específico do ano</option>
-                <option value="birthday" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'birthday' else '' }}>Aniversário</option>
-                <option value="Monday" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'Monday' else '' }}>Todas as segundas</option>
-                <option value="Tuesday" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'Tuesday' else '' }}>Todas as terças</option>
-                <option value="Wednesday" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'Wednesday' else '' }}>Todas as quartas</option>
-                <option value="Thursday" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'Thursday' else '' }}>Todas as quintas</option>
-                <option value="Friday" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'Friday' else '' }}>Todas as sextas</option>
-                <option value="Saturday" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'Saturday' else '' }}>Todos os sábados</option>
-                <option value="Sunday" {{ 'selected' if tarefa.intervalo_repeticao_mode == 'Sunday' else '' }}>Todos os domingos</option>
-            </select>
-        </div>
-        
-        <!-- Valor de Repetição -->
-        <div class="form-group col-md-3">
-            <label for="intervalo_repeticao_value">Valor de Repetição:</label>
-            <input type="text" id="intervalo_repeticao_value" name="intervalo_repeticao_value" value="{{ tarefa.intervalo_repeticao_value }}" placeholder="Interval value" class="form-control" />
-        </div>
-        
-        <!-- Próximo Domingo -->
-        <div class="form-check col-md-5" style="margin: 0.2cm 1cm;">
-            <input type="checkbox" id="proximo_domingo" name="proximo_domingo" class="form-check-input ml-2" {{ 'checked' if tarefa.proximo_domingo else '' }}>
-            <label for="proximo_domingo">Find next Sunday after calculated date</label>
-        </div>
-        
-        <!-- Classe -->
-        <div class="form-group col-md-3">
-            <label for="classe">Classe:</label>
-            <select name="classe" class="form-control">
-                <option value="0" {{ 'selected' if tarefa.classe == '0' else '' }}>0 - Manutenção</option>
-                <option value="1" {{ 'selected' if tarefa.classe == '1' else '' }}>1 - Muito Urgentes</option>
-                <option value="2" {{ 'selected' if tarefa.classe == '2' else '' }}>2 - Urgente</option>
-                <option value="3" {{ 'selected' if tarefa.classe == '3' else '' }}>3 - Pouco Urgente</option>
-                <option value="4" {{ 'selected' if tarefa.classe == '4' else '' }}>4 - Não Urgente</option>
-            </select>
-        </div>
-        
-        <!-- Notas -->
-        <div>
-            <label for="notas">Notas:</label>
-            <textarea id="notas" name="notas">{{ tarefa.notas }}</textarea>
-        </div>
-        
-        <!-- Ordem -->
-        <div class="form-group col-md-3">
-            <label for="ordem">Ordem:</label>
-            <input type="text" id="ordem" name="ordem" value="{{ tarefa.ordem }}" placeholder="Ordem" class="form-control" />
-        </div>
-        
-        <!-- Owner -->
-        <div class="form-group col-md-3">
-            <label for="owner">Proprietário:</label>
-            <select name="owner" class="form-control">
-                <option value="steph" {{ 'selected' if tarefa.owner == 'steph' else '' }}>Stephanie</option>
-                <option value="dan" {{ 'selected' if tarefa.owner == 'dan' else '' }}>Daniel</option>
-                <option value="ambos" {{ 'selected' if tarefa.owner == 'ambos' else '' }}>Ambos</option>
-            </select>
+
+        <div class="form-row">
+            <!-- Classe -->
+            <div class="form-group col-md-4">
+                <label for="classe">Classe:</label>
+                <select name="classe" class="form-control">
+                    <option value="0" {{ 'selected' if tarefa.classe == '0' else '' }}>0 - Manutenção</option>
+                    <option value="1" {{ 'selected' if tarefa.classe == '1' else '' }}>1 - Muito Urgentes</option>
+                    <option value="2" {{ 'selected' if tarefa.classe == '2' else '' }}>2 - Urgente</option>
+                    <option value="3" {{ 'selected' if tarefa.classe == '3' else '' }}>3 - Pouco Urgente</option>
+                    <option value="4" {{ 'selected' if tarefa.classe == '4' else '' }}>4 - Não Urgente</option>
+                </select>
+            </div>
+
+            <!-- Notas -->
+            <div class="form-group col-md-4">
+                <label for="notas">Notas:</label>
+                <textarea id="notas" name="notas" class="form-control">{{ tarefa.notas }}</textarea>
+            </div>
+
+            <!-- Ordem -->
+            <div class="form-group col-md-4">
+                <label for="ordem">Ordem:</label>
+                <input type="text" id="ordem" name="ordem" value="{{ tarefa.ordem }}" placeholder="Ordem" class="form-control" />
+            </div>
+
+            <!-- Owner -->
+            <div class="form-group col-md-4">
+                <label for="owner">Proprietário:</label>
+                <select name="owner" class="form-control">
+                    <option value="steph" {{ 'selected' if tarefa.owner == 'steph' else '' }}>Stephanie</option>
+                    <option value="dan" {{ 'selected' if tarefa.owner == 'dan' else '' }}>Daniel</option>
+                    <option value="ambos" {{ 'selected' if tarefa.owner == 'ambos' else '' }}>Ambos</option>
+                </select>
+            </div>
         </div>
 
         <!-- Botões -->
-        <div>
-            <button type="submit">Atualizar Tarefa</button>
-            <a href="/" class="btn">Go Back</a>
+        <div class="form-row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Atualizar Tarefa</button>
+                <a href="/" class="btn btn-secondary">Go Back</a>
+            </div>
         </div>
     </form>
 
@@ -156,6 +168,10 @@
                 input.placeholder = "Interval value";
             }
         });
+    </script>
+</body>
+</html>
+
     </script>
 </body>
 </html>
