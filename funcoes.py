@@ -25,10 +25,10 @@ def calcular_proxima_data(data,intervalo_repeticao_next_sunday,intervalo_repetic
 
 
 #for calcular_proxima_data
-def find_the_next_Sunday(data,QuerEncontrar,primeiraVez,proximoIncuindoHoje=False,domingoPassado=True,domingoDaquiAUmaSemana=False):
+def find_the_next_Sunday(data,querEncontrar,primeiraVez,proximoIncuindoHoje=False,domingoPassado=True,domingoDaquiAUmaSemana=False):
     # Find the next Sunday after the calculated date if requested
     data = data
-    if data and QuerEncontrar:
+    if data and querEncontrar:
         if proximoIncuindoHoje or primeiraVez:
             data += relativedelta(weekday=SU)
         elif domingoPassado:
