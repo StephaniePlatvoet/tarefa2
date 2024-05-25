@@ -12,7 +12,7 @@ def adiar(Tarefa,db,id):
         data_proxima_na_bd = tarefa.data_proxima
         data_proxima_seguinte = tarefa.data_proxima_seguinte
 
-        tarefa.data_proxima = find_the_next_Sunday(data_proxima_na_bd,True,primeiraVez = False,ProximoIncuindoHoje=False,domingoPassado=False,domingoDaquiAUmaSemana=True)
+        tarefa.data_proxima = find_the_next_Sunday(data_proxima_na_bd,True,primeiraVez = False,proximoIncuindoHoje=False,domingoPassado=False,domingoDaquiAUmaSemana=True)
         tarefa.data_proxima_seguinte = calcular_proxima_data(tarefa.data_proxima,proximo_domingo,intervalo_repeticao_value,intervalo_repeticao_mode,primeiraVez = False)
 
         if intervalo_repeticao_mode == ('birthday'):
