@@ -17,7 +17,7 @@ def criar(task_class,db):
     feita=False
     classe = request.form.get('classe')
     notas = request.form['notas']
-    ordem = request.form['ordem']
+    ordem = custom_order(request.form['ordem'])
     owner = request.form['owner']
     proximo_domingo=bool(intervalo_repeticao_next_sunday)
 
