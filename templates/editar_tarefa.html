@@ -124,8 +124,8 @@
                 <label for="ordem">Ordem:</label>
                 <input type="text" id="ordem" name="ordem" value="{{ tarefa.ordem if tarefa.ordem is not none else '' }}" placeholder="Ordem" class="form-control" />
             </div>            
-
-
+        </div>
+        <div class="form-row">
             <!-- Próximo Domingo -->
             <div class="form-group col-md-4 form-check align-self-end" style="padding-top: 32px; padding-left:50px;">
                 <input type="checkbox" id="proximo_domingo" name="proximo_domingo" class="form-check-input" {{ 'checked' if tarefa.proximo_domingo else '' }}>
