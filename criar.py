@@ -11,7 +11,7 @@ def criar(task_class,db):
     data_primeira_vez_str = request.form['data_primeira_vez']
     data_primeira_vez = datetime.strptime(data_primeira_vez_str, '%Y-%m-%d') if data_primeira_vez_str else datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
     data_proxima = calcular_proxima_data(data_primeira_vez,intervalo_repeticao_next_sunday,intervalo_repeticao_value,intervalo_repeticao_mode,primeiraVez = True)
-    data_proxima_seguinte = calcular_proxima_data(data_primeira_vez,intervalo_repeticao_next_sunday,intervalo_repeticao_value,intervalo_repeticao_mode,primeiraVez = False)
+    data_proxima_seguinte = calcular_proxima_data(data_proxima,intervalo_repeticao_next_sunday,intervalo_repeticao_value,intervalo_repeticao_mode,primeiraVez = False)
     #
     descricao=request.form['descricao_tarefa']
     feita=False
