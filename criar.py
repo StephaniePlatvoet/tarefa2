@@ -10,7 +10,7 @@ def criar(task_class,db):
     nova_tarefa = task_class(
     descricao=request.form['descricao_tarefa'],
     feita=False,
-    data_primeira_vez=data_primeira_vez_str if data_primeira_vez_str else datetime.now().replace(hour=0, minute=0, second=0, microsecond=0),
+    data_primeira_vez = datetime.strptime(data_primeira_vez_str, '%Y-%m-%d') if data_primeira_vez_str else datetime.now().replace(hour=0, minute=0, second=0, microsecond=0),
     intervalo_repeticao_mode=request.form.get('intervalo_repeticao_mode'),
     intervalo_repeticao_value=request.form.get('intervalo_repeticao_value'),
     proximo_domingo=bool(request.form.get('intervalo_repeticao_next_sunday')),
