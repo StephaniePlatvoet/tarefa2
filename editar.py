@@ -61,7 +61,3 @@ def editar(Tarefa, db, id):
         flash('Tarefa não encontrada.', 'error')
         return redirect(url_for('index'))  # Assumindo que você tem uma rota 'index'
 
-    else:
-        flash('Tarefa não encontrada.', 'error')
-        return redirect(url_for('index'))  # Assumindo que você tem uma rota 'index'
-
