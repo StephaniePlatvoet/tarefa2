@@ -48,7 +48,7 @@ class Tarefa(db.Model):
 
 @app.route('/')
 def go_home():
-    return exibirFiltroCustom(Tarefa, db)
+    return exibirFiltroCustom(Tarefa, db, owner=None, filtrar_data_mais_proxima=True)
 
 
 
