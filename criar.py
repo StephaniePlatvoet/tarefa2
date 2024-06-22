@@ -39,4 +39,4 @@ def criar(task_class,db):
 
     db.session.add(nova_tarefa)
     db.session.commit()
-    return redirect(url_for('go_home') + '#content')
+    return redirect(url_for('do_filter') + '#content')
