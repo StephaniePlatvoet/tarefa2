@@ -20,4 +20,4 @@ def adiar(Tarefa,db,id):
 
 
     db.session.commit()
-    return redirect(url_for('go_home') + '#content')
+    return redirect(url_for('do_filter') + '#content')
