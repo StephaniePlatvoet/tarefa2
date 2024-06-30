@@ -1,4 +1,5 @@
 from datetime import datetime
+from flask_sqlalchemy import SQLAlchemy
 
 def criar_bd(db):
     class Tarefa(db.Model):
