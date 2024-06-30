@@ -18,3 +18,4 @@ def criar_bd(db):
         notas = db.Column(db.String(200))
         ordem = db.Column(db.Integer)
         owner = db.Column(db.String(50))
+    return Tarefa
