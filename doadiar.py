@@ -16,7 +16,7 @@ def adiar(Tarefa,db,id):
         tarefa.data_proxima_seguinte = calcular_proxima_data(tarefa.data_proxima,proximo_domingo,intervalo_repeticao_value,intervalo_repeticao_mode,primeiraVez = False)
 
         if intervalo_repeticao_mode == ('birthday'):
-            return redirect(url_for('home') + '#content')
+            return redirect(url_for('do_filter') + '#content')
 
 
     db.session.commit()
