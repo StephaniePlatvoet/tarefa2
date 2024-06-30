@@ -23,19 +23,19 @@ def criar(task_class,db):
 
     
     nova_tarefa = task_class(
-    descricao=descricao,
-    feita=feita,
-    data_primeira_vez=data_primeira_vez,
-    intervalo_repeticao_mode=intervalo_repeticao_mode,
-    intervalo_repeticao_value=intervalo_repeticao_value,
-    proximo_domingo=proximo_domingo,
-    data_proxima=data_proxima,
-    data_proxima_seguinte=data_proxima_seguinte,
-    classe=classe,
-    notas=notas,
-    ordem=ordem,
-    owner=owner
-    )
+        descricao=descricao,
+        feita=feita,
+        data_primeira_vez=data_primeira_vez,
+        intervalo_repeticao_mode=intervalo_repeticao_mode,
+        intervalo_repeticao_value=intervalo_repeticao_value,
+        proximo_domingo=proximo_domingo,
+        data_proxima=data_proxima,
+        data_proxima_seguinte=data_proxima_seguinte,
+        classe=classe,
+        notas=notas,
+        ordem=ordem,
+        owner=owner
+        )
 
     db.session.add(nova_tarefa)
     db.session.commit()
