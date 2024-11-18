@@ -44,7 +44,10 @@ class Tarefa(db.Model):
     ordem = db.Column(db.Integer)
     owner = db.Column(db.String(50))
 
-
+# Criar as tabelas antes de processar a primeira requisição
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 
 @app.route('/')
