@@ -1,5 +1,6 @@
 ## export FLASK_APP=app.py
-## export DATABASE_URL=postgresql://tarefas:7odhP4yn7ZT8YWWd5KiR6bXoLgxdBe7v@dpg-co6337m3e1ms73bet640-a.frankfurt-postgres.render.com/tarefas_tbhr
+## old export DATABASE_URL=postgresql://tarefas:7odhP4yn7ZT8YWWd5KiR6bXoLgxdBe7v@dpg-co6337m3e1ms73bet640-a.frankfurt-postgres.render.com/tarefas_tbhr
+## new export DATABASE_URL=postgresql://tarefas_skl3_user:uWr9zLvm119Qo4SAJSOxmLuHmFqq5m8j@dpg-cstf0k8gph6c739dd940-a.oregon-postgres.render.com/tarefas_skl3
 ## flask run
 
 
