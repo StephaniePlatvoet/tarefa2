@@ -44,9 +44,9 @@ class Tarefa(db.Model):
     ordem = db.Column(db.Integer)
     owner = db.Column(db.String(50))
 
-# Criar as tabelas antes de processar a primeira requisição
-@app.before_first_request
-def create_tables():
+
+# Criar as tabelas no banco de dados durante a inicialização do app
+with app.app_context():
     db.create_all()
 
 
